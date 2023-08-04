@@ -1,0 +1,181 @@
+@import 'resets', 'variables';
+
+@mixin flexCenter($direction) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: $direction;
+}
+
+@function fontWeight($weight-name) {
+    @return map-get($font-weights, $weight-name)
+};
+
+@mixin mobile {
+    @media (max-width: $mobile) {
+        @content;
+    }
+}
+
+body {
+    height: 100vh;
+    font-family: $myFont;
+    font-size: 16px;
+    color: white;
+    @include flexCenter(column);
+
+    @include mobile {
+        height: 100%;
+    }
+}   
+
+main {
+    border: 1px solid black;
+    padding: 1rem;
+    width: 80%;
+    height: 80%;
+    gap: 100px;
+    background-image: url(../images/bg-intro-desktop.png);
+    background-color: $red;
+
+    .learn-message {
+        width: 30%;
+        gap: 30px;
+
+        h1 {
+           font-size: 2.5rem;
+           line-height: 1.2;
+        }
+
+        p {
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+        @include flexCenter(column);
+    
+    }
+
+    .signup-box {
+        gap: 20px;
+        width: 30%;
+
+        &-message {
+            text-align: center;
+            padding: 1rem;
+            width: 100%;
+            background-color: $blue;
+            border-radius: 10px;
+            box-shadow: 0px 6px rgba(0, 0, 0, 0.185);
+
+            .try-free {
+                font-weight: fontWeight(semi-bold);
+            }
+        }
+
+        form {
+            background-color: white;
+            padding: 2rem;
+            gap: 15px;
+            border-radius: 10px;
+            width: 100%;
+            box-shadow: 0px 6px rgba(0, 0, 0, 0.185);
+
+            input {
+                padding-left: 1.3rem;
+                height: 40px;
+                width: 100%;
+                border: 1px solid $grayishblue;
+                border-radius: 5px;
+                font-weight: fontWeight(semi-bold);
+
+                &:focus {
+                    outline: 1px solid black;
+                }
+            }
+
+            button {
+                height: 50px;
+                width: 100%;
+                border-radius: 5px;
+                border: none;
+                background-color: $green;
+                color: white;
+                font-size: 16px;
+                font-weight: fontWeight(semi-bold);
+                box-shadow: 0px 4px darken($green, 10%);
+
+                &:hover {
+                    background-color: lighten($green, 20%);
+                    box-shadow: 0px 4px darken($green, 2%);
+                }
+            }
+
+            .terms-message {
+                color: $grayishblue;
+                font-size: 10px;
+
+                .terms-and-services {
+                    color: red;
+                    font-weight: fontWeight(semi-bold);
+                }
+            }
+
+            @include flexCenter(column)
+        }
+
+        @include flexCenter(column);
+    }
+
+    @include flexCenter(row);
+    @include mobile {
+        flex-grow: 1;
+        gap: 50px;
+        width: 100%;
+        padding-top: 5rem;
+        @include flexCenter(column);
+
+        .learn-message {
+            width: 80%;
+            text-align: center;
+            gap: 10px;
+            
+            h1 {
+                font-size: 1.5rem
+            }
+        }
+
+        .signup-box {
+            width: 100%;
+            padding: 10px;
+            
+            &-message {
+                text-align: center;
+                font-size: 15px;
+                padding-left: 80px;
+                padding-right: 80px;
+            }
+
+            form {
+                padding: 25px;
+
+                .terms-message {
+                    text-align: center;
+                }
+            }
+            
+        }
+    }
+};
+
+footer {
+    position: fixed;
+    bottom: 0;
+    color: black;
+
+    @include mobile {
+        position: relative;
+        font-size: 12px;
+        padding: 1rem;
+    }
+}
+
