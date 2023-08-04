@@ -48,8 +48,4 @@ submitBtn.addEventListener("click", (e) => {
     check()
 })
 
-inputFields.addEventListener("keypress", () => {
-    check()
-})
-
 
